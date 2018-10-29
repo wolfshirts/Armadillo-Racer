@@ -54,22 +54,42 @@ namespace space_races
             //Get the track length
             int trackLength = this.Size.Width - checkerFlag.Width;
             //Create our racers, and add them to their array.
-           
-            racerOne = new Racer() {
-                location = 0, racerPicture = trackOneBox,
-                startingPosition = trackOneBox.Left, racetrackLength = trackLength,
+
+            racerOne = new Racer()
+            {
+                location = 0,
+                racerPicture = trackOneBox,
+                startingPosition = trackOneBox.Left,
+                racetrackLength = trackLength,
                 randomizer = randomGen
             };
 
-            racerTwo = new Racer() { location = 0, racerPicture = trackTwoBox,
-                startingPosition = trackTwoBox.Left, racetrackLength = trackLength,
-                randomizer = randomGen};
+            racerTwo = new Racer()
+            {
+                location = 0,
+                racerPicture = trackTwoBox,
+                startingPosition = trackTwoBox.Left,
+                racetrackLength = trackLength,
+                randomizer = randomGen
+            };
 
-            racerThree = new Racer() { location = 0, racerPicture = trackThreeBox, startingPosition = trackThreeBox.Left,
-                racetrackLength = trackLength, randomizer = randomGen };
+            racerThree = new Racer()
+            {
+                location = 0,
+                racerPicture = trackThreeBox,
+                startingPosition = trackThreeBox.Left,
+                racetrackLength = trackLength,
+                randomizer = randomGen
+            };
 
-            racerFour = new Racer() { location = 0, racerPicture = trackFourBox, startingPosition = trackFourBox.Left,
-                racetrackLength = trackLength, randomizer = randomGen };
+            racerFour = new Racer()
+            {
+                location = 0,
+                racerPicture = trackFourBox,
+                startingPosition = trackFourBox.Left,
+                racetrackLength = trackLength,
+                randomizer = randomGen
+            };
 
             racers = new Racer[] { racerOne, racerTwo, racerThree, racerFour };
         }
@@ -115,10 +135,10 @@ namespace space_races
             {
                 MessageBox.Show("There is no active bettor!");
             }
-            
+
 
             Bettor activeBettor = WhoIsBetting();
-            if(activeBettor.PlaceBet((int)betAmountControl.Value, (int)racerSelectionControl.Value))
+            if (activeBettor.PlaceBet((int)betAmountControl.Value, (int)racerSelectionControl.Value))
             {
                 Update();
                 timer1.Start();
@@ -139,7 +159,7 @@ namespace space_races
                     timer1.Stop();
                     ResetRacers();
                     Update();
-                    for (int j = 0;  j < bettors.Length;  j++)
+                    for (int j = 0; j < bettors.Length; j++)
                     {
                         bettors[j].Collect(i + 1); //Array starts at 0, racers are numbered 1-4, should've used 0 as start but didn't.
                                                    //So adding +1 to the array gives us the correct winner to collect on.
@@ -151,17 +171,31 @@ namespace space_races
 
         private void bettorOneRadio_CheckedChanged(object sender, EventArgs e)
         {
-            Update();
+            //Update();
         }
 
         private void bettorTwoRadio_CheckedChanged(object sender, EventArgs e)
         {
-            Update();
+            //Update();
         }
 
         private void bettorThreeRadio_CheckedChanged(object sender, EventArgs e)
         {
-            Update();
+            //Update();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Bettor currentBettor = WhoIsBetting();
+            if (currentBettor.myCash < (int)betAmountControl.Value)
+            {
+                MessageBox.Show("Not enough funds.");
+            }
+            else
+            {
+                currentBettor.PlaceBet((int)betAmountControl.Value, (int)racerSelectionControl.Value);
+                Update();
+            }
         }
     }
 }

@@ -46,12 +46,12 @@
             this.bettorThreeLabel = new System.Windows.Forms.Label();
             this.bettorTwoLabel = new System.Windows.Forms.Label();
             this.currentBettorLabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.betAmountControl = new System.Windows.Forms.NumericUpDown();
             this.racerSelectionControl = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.raceButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.checkerFlag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackOneBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackTwoBox)).BeginInit();
@@ -119,7 +119,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 407);
+            this.label2.Location = new System.Drawing.Point(15, 407);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 13);
             this.label2.TabIndex = 6;
@@ -214,16 +214,6 @@
             this.currentBettorLabel.TabIndex = 15;
             this.currentBettorLabel.Text = "someGuy ";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(75, 538);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 13);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "BETS";
-            // 
             // betAmountControl
             // 
             this.betAmountControl.Increment = new decimal(new int[] {
@@ -232,8 +222,8 @@
             0,
             0});
             this.betAmountControl.Location = new System.Drawing.Point(120, 531);
-            this.betAmountControl.Minimum = new decimal(new int[] {
-            5,
+            this.betAmountControl.Maximum = new decimal(new int[] {
+            15,
             0,
             0,
             0});
@@ -292,16 +282,26 @@
             this.timer1.Interval = 5;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(74, 531);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(36, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "bets";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1167, 628);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.raceButton);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.racerSelectionControl);
             this.Controls.Add(this.betAmountControl);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.currentBettorLabel);
             this.Controls.Add(this.bettorTwoLabel);
             this.Controls.Add(this.bettorThreeLabel);
@@ -353,12 +353,12 @@
         private System.Windows.Forms.Label bettorThreeLabel;
         private System.Windows.Forms.Label bettorTwoLabel;
         private System.Windows.Forms.Label currentBettorLabel;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.NumericUpDown betAmountControl;
         private System.Windows.Forms.NumericUpDown racerSelectionControl;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button raceButton;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
