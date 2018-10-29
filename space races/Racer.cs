@@ -24,9 +24,7 @@ namespace space_races
             //update the picture on the form
             racerPicture.Left = startingPosition + location;
 
-            Console.WriteLine(startingPosition);
-
-            if ((location + startingPosition) == racetrackLength)
+            if (racerPicture.Right >= racetrackLength)
             {   
                 return true;
             }

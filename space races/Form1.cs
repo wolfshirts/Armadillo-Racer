@@ -140,7 +140,7 @@ namespace space_races
                 if (racers[i].Run())
                 {
                     timer1.Stop();
-                    MessageBox.Show("Racer " + (i + 1) + " wins!");
+                    MessageBox.Show("Racer " + (i+1) + " wins!");
                    
                     ResetRacers();
                     Update();
