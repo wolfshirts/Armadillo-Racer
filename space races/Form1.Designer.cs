@@ -165,7 +165,7 @@
             this.bettorTwoRadio.TabIndex = 10;
             this.bettorTwoRadio.Text = "bettorTwo";
             this.bettorTwoRadio.UseVisualStyleBackColor = true;
-            this.bettorTwoRadio.CheckedChanged += new System.EventHandler(this.bettorTwoRadio_CheckedChanged);
+            this.bettorTwoRadio.CheckedChanged += new System.EventHandler(this.bettorOneRadio_CheckedChanged);
             // 
             // bettorThreeRadio
             // 
@@ -176,7 +176,7 @@
             this.bettorThreeRadio.TabIndex = 11;
             this.bettorThreeRadio.Text = "bettorThree";
             this.bettorThreeRadio.UseVisualStyleBackColor = true;
-            this.bettorThreeRadio.CheckedChanged += new System.EventHandler(this.bettorThreeRadio_CheckedChanged);
+            this.bettorThreeRadio.CheckedChanged += new System.EventHandler(this.bettorOneRadio_CheckedChanged);
             // 
             // bettorOneLabel
             // 
@@ -224,6 +224,11 @@
             this.betAmountControl.Location = new System.Drawing.Point(120, 531);
             this.betAmountControl.Maximum = new decimal(new int[] {
             15,
+            0,
+            0,
+            0});
+            this.betAmountControl.Minimum = new decimal(new int[] {
+            5,
             0,
             0,
             0});

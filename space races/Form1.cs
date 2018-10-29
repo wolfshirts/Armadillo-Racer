@@ -129,24 +129,7 @@ namespace space_races
 
         private void raceButton_Click(object sender, EventArgs e)
         {
-            ResetRacers();
-            //ensure we have an active bettor, should never be accessible.
-            if (WhoIsBetting() == null)
-            {
-                MessageBox.Show("There is no active bettor!");
-            }
-
-
-            Bettor activeBettor = WhoIsBetting();
-            if (activeBettor.PlaceBet((int)betAmountControl.Value, (int)racerSelectionControl.Value))
-            {
-                Update();
-                timer1.Start();
-            }
-            else
-            {
-                MessageBox.Show("Not enough funds.");
-            }
+            timer1.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -157,6 +140,8 @@ namespace space_races
                 if (racers[i].Run())
                 {
                     timer1.Stop();
+                    MessageBox.Show("Racer " + (i + 1) + " wins!");
+                   
                     ResetRacers();
                     Update();
                     for (int j = 0; j < bettors.Length; j++)
@@ -169,25 +154,11 @@ namespace space_races
             }
         }
 
-        private void bettorOneRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            //Update();
-        }
-
-        private void bettorTwoRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            //Update();
-        }
-
-        private void bettorThreeRadio_CheckedChanged(object sender, EventArgs e)
-        {
-            //Update();
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Bettor currentBettor = WhoIsBetting();
-            if (currentBettor.myCash < (int)betAmountControl.Value)
+            if (!currentBettor.PlaceBet((int)betAmountControl.Value, (int)racerSelectionControl.Value))
             {
                 MessageBox.Show("Not enough funds.");
             }
@@ -197,5 +168,13 @@ namespace space_races
                 Update();
             }
         }
+
+        private void bettorOneRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            //This is just to ensure that the bettor name changes when radiobuttons are clicked.
+            //All of the radio buttons link up to this method.
+            Update();
+        }
+
     }
 }
