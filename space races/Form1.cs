@@ -27,12 +27,16 @@ namespace space_races
         private Racer racerThree;
         private Racer racerFour;
 
+        //give our racers a randomizer;
+        public Random randomGen = new Random();
+
         public Form1()
         {
             InitializeComponent();
             InitBettors();
             InitRacers();
             Update();
+            //currentBettorLabel.Text = WhoIsBetting().name;
         }
 
         private void InitBettors()
@@ -50,10 +54,23 @@ namespace space_races
             //Get the track length
             int trackLength = this.Size.Width - checkerFlag.Width;
             //Create our racers, and add them to their array.
-            racerOne = new Racer() { location = 0, racerPicture = trackOneBox, startingPosition = trackOneBox.Left, racetrackLength = trackLength };
-            racerTwo = new Racer() { location = 0, racerPicture = trackTwoBox, startingPosition = trackTwoBox.Left, racetrackLength = trackLength };
-            racerThree = new Racer() { location = 0, racerPicture = trackThreeBox, startingPosition = trackThreeBox.Left, racetrackLength = trackLength };
-            racerFour = new Racer() { location = 0, racerPicture = trackFourBox, startingPosition = trackFourBox.Left, racetrackLength = trackLength };
+           
+            racerOne = new Racer() {
+                location = 0, racerPicture = trackOneBox,
+                startingPosition = trackOneBox.Left, racetrackLength = trackLength,
+                randomizer = randomGen
+            };
+
+            racerTwo = new Racer() { location = 0, racerPicture = trackTwoBox,
+                startingPosition = trackTwoBox.Left, racetrackLength = trackLength,
+                randomizer = randomGen};
+
+            racerThree = new Racer() { location = 0, racerPicture = trackThreeBox, startingPosition = trackThreeBox.Left,
+                racetrackLength = trackLength, randomizer = randomGen };
+
+            racerFour = new Racer() { location = 0, racerPicture = trackFourBox, startingPosition = trackFourBox.Left,
+                racetrackLength = trackLength, randomizer = randomGen };
+
             racers = new Racer[] { racerOne, racerTwo, racerThree, racerFour };
         }
 
@@ -65,6 +82,7 @@ namespace space_races
             {
                 bettors[i].UpdateLabels();
             }
+            currentBettorLabel.Text = WhoIsBetting().name;
         }
 
         private Bettor WhoIsBetting()
@@ -91,21 +109,59 @@ namespace space_races
 
         private void raceButton_Click(object sender, EventArgs e)
         {
+            ResetRacers();
+            //ensure we have an active bettor, should never be accessible.
             if (WhoIsBetting() == null)
             {
-                return;
+                MessageBox.Show("There is no active bettor!");
             }
-            Bettor activeBettor = WhoIsBetting();
+            
 
-            int x = 200;
-            while (x > 0) {
-                x--;
-                for (int i = 0; i < racers.Length; i++)
+            Bettor activeBettor = WhoIsBetting();
+            if(activeBettor.PlaceBet((int)betAmountControl.Value, (int)racerSelectionControl.Value))
+            {
+                Update();
+                timer1.Start();
+            }
+            else
+            {
+                MessageBox.Show("Not enough funds.");
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            raceButton.Enabled = false;
+            for (int i = 0; i < racers.Length; i++)
+            {
+                if (racers[i].Run())
                 {
-                    racers[i].Run();
+                    timer1.Stop();
+                    ResetRacers();
+                    Update();
+                    for (int j = 0;  j < bettors.Length;  j++)
+                    {
+                        bettors[j].Collect(i + 1); //Array starts at 0, racers are numbered 1-4, should've used 0 as start but didn't.
+                                                   //So adding +1 to the array gives us the correct winner to collect on.
+                    }
+                    raceButton.Enabled = true;
                 }
             }
-            ResetRacers();
+        }
+
+        private void bettorOneRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            Update();
+        }
+
+        private void bettorTwoRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            Update();
+        }
+
+        private void bettorThreeRadio_CheckedChanged(object sender, EventArgs e)
+        {
+            Update();
         }
     }
 }

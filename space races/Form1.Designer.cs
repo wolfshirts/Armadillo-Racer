@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.checkerFlag = new System.Windows.Forms.PictureBox();
@@ -50,6 +51,7 @@
             this.racerSelectionControl = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.raceButton = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.checkerFlag)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackOneBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackTwoBox)).BeginInit();
@@ -144,6 +146,7 @@
             // bettorOneRadio
             // 
             this.bettorOneRadio.AutoSize = true;
+            this.bettorOneRadio.Checked = true;
             this.bettorOneRadio.Location = new System.Drawing.Point(15, 450);
             this.bettorOneRadio.Name = "bettorOneRadio";
             this.bettorOneRadio.Size = new System.Drawing.Size(72, 17);
@@ -151,6 +154,7 @@
             this.bettorOneRadio.TabStop = true;
             this.bettorOneRadio.Text = "bettorOne";
             this.bettorOneRadio.UseVisualStyleBackColor = true;
+            this.bettorOneRadio.CheckedChanged += new System.EventHandler(this.bettorOneRadio_CheckedChanged);
             // 
             // bettorTwoRadio
             // 
@@ -159,9 +163,9 @@
             this.bettorTwoRadio.Name = "bettorTwoRadio";
             this.bettorTwoRadio.Size = new System.Drawing.Size(73, 17);
             this.bettorTwoRadio.TabIndex = 10;
-            this.bettorTwoRadio.TabStop = true;
             this.bettorTwoRadio.Text = "bettorTwo";
             this.bettorTwoRadio.UseVisualStyleBackColor = true;
+            this.bettorTwoRadio.CheckedChanged += new System.EventHandler(this.bettorTwoRadio_CheckedChanged);
             // 
             // bettorThreeRadio
             // 
@@ -170,9 +174,9 @@
             this.bettorThreeRadio.Name = "bettorThreeRadio";
             this.bettorThreeRadio.Size = new System.Drawing.Size(80, 17);
             this.bettorThreeRadio.TabIndex = 11;
-            this.bettorThreeRadio.TabStop = true;
             this.bettorThreeRadio.Text = "bettorThree";
             this.bettorThreeRadio.UseVisualStyleBackColor = true;
+            this.bettorThreeRadio.CheckedChanged += new System.EventHandler(this.bettorThreeRadio_CheckedChanged);
             // 
             // bettorOneLabel
             // 
@@ -283,6 +287,11 @@
             this.raceButton.UseVisualStyleBackColor = true;
             this.raceButton.Click += new System.EventHandler(this.raceButton_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 5;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -349,6 +358,7 @@
         private System.Windows.Forms.NumericUpDown racerSelectionControl;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button raceButton;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

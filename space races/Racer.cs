@@ -14,7 +14,7 @@ namespace space_races
         public int racetrackLength; //how long is the track
         public PictureBox racerPicture = null;
         public int location = 0; //location on the ractrack
-        public Random randomizer = new Random(); //only need this one.
+        public Random randomizer; //only need this one.
 
         public bool Run()
         {
@@ -23,15 +23,15 @@ namespace space_races
             location += moveAmount;
             //update the picture on the form
             racerPicture.Left = startingPosition + location;
+
+            Console.WriteLine(startingPosition);
+
             if ((location + startingPosition) == racetrackLength)
-            {
-                //return true if won.
-                
+            {   
                 return true;
             }
             else
             {
-                MessageBox.Show(racetrackLength.ToString());
                 return false;
             }
         }

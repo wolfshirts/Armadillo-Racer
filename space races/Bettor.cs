@@ -34,7 +34,7 @@ namespace space_races
         {
             //place a new bet and store it in the bet field.
             //return true if i have enough to bet.
-            if(myCash - betAmount <= 0)
+            if(myCash - betAmount < 0)
             {
                 return false;
             }
@@ -53,7 +53,7 @@ namespace space_races
         public void Collect(int winner)
         {
             //ask my bet to pay out, clear my bet, and update my labels.
-            myBet.Payout(winner);
+            myCash += myBet.Payout(winner);
             ClearBet();
             UpdateLabels();
         }

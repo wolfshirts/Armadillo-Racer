@@ -18,13 +18,13 @@ namespace space_races
             //return who placed the bet, how much the bet was for,
             //if the amount is 0 no bet placed.
             //"Joe bets 8 on dog #4"
-            if(amount == 0)
+            if(amount == 0 || bettor.name == null )
             {
-                return bettor + " has no bet placed.";
+                return  " has no bet placed.";
             }
             else
             {
-                return bettor.name + " bets " + amount + "on racer # " + racer;
+                return bettor.name + " bets " + amount + " on racer # " + racer;
             }
         }
 
